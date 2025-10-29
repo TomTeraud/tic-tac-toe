@@ -13,9 +13,13 @@ def initial_state():
     """
     Returns starting state of the board.
     """
-    return [[EMPTY, EMPTY, EMPTY],
-            [EMPTY, EMPTY, EMPTY],
-            [EMPTY, EMPTY, EMPTY]]
+    return [[X, EMPTY, O],
+            [EMPTY, X, EMPTY],
+            [O, EMPTY, X]]
+
+    # return [[EMPTY, EMPTY, EMPTY],
+    #         [EMPTY, EMPTY, EMPTY],
+    #         [EMPTY, EMPTY, EMPTY]]
 
 
 def player(board):
@@ -95,3 +99,18 @@ def minimax(board):
         If the board is a terminal board, the minimax function should return None.
     """
     raise NotImplementedError
+
+def get_board_lines(board):
+    """
+    Returns target lines on board as set of tuples
+    """
+    r0 = board[0][0], board[0][1], board[0][2]
+    r1 = board[1][0], board[1][1], board[1][2]
+    r2 = board[2][0], board[2][1], board[2][2]
+    c0 = board[0][0], board[1][0], board[2][0]
+    c1 = board[0][1], board[1][1], board[2][1]
+    c2 = board[0][2], board[1][2], board[2][2]
+    d0 = board[0][0], board[1][1], board[2][2]
+    d1 = board[2][0], board[1][1], board[0][2]    
+    
+    return {r0, r1, r2, c0, c1, c2, d0, d1}
