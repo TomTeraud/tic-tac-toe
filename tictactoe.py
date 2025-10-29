@@ -68,7 +68,15 @@ def winner(board):
         You may assume that there will be at most one winner (that is, no board will ever have both players with three-in-a-row, since that would be an invalid board state).
         If there is no winner of the game (either because the game is in progress, or because it ended in a tie), the function should return None.
     """
-    raise NotImplementedError
+    lines = get_board_lines(board)
+    # Empty board
+    if len(lines) == 1:
+        return None
+    
+    for line in lines:
+        if None not in line and len(set(line)) == 1:
+            return line[0]
+    return None
 
 
 def terminal(board):
@@ -78,7 +86,8 @@ def terminal(board):
         If the game is over, either because someone has won the game or because all cells have been filled without anyone winning, the function should return True.
         Otherwise, the function should return False if the game is still in progress.
     """
-    raise NotImplementedError
+    w = winner(board)
+    return ...
 
 
 def utility(board):
