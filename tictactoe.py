@@ -3,6 +3,7 @@ Tic Tac Toe Player
 """
 
 import math
+import copy
 
 X = "X"
 O = "O"
@@ -77,8 +78,13 @@ def result(board, action):
         This means that simply updating a cell in board itself is not a correct implementation of the result function. 
         You’ll likely want to make a deep copy of the board first before making any changes.
     """
-    raise NotImplementedError
 
+    if action in actions(board):
+        new_board = copy.deepcopy(board)
+        new_board[action[0]][action[1]] = player(board)
+        return new_board
+    raise ValueError("Not valid action!!!")
+    
 
 def winner(board):
     """
