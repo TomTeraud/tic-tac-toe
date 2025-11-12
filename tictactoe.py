@@ -45,7 +45,7 @@ def player(board):
             if cell == O:
                 o_player_turns = o_player_turns + 1
 
-    if x_player_turns > o_player_turns or x_player_turns == o_player_turns:
+    if x_player_turns < o_player_turns or x_player_turns == o_player_turns:
         return X
     else:
         return O
