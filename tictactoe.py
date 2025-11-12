@@ -12,14 +12,18 @@ EMPTY = None
 def initial_state():
     """
     Returns starting state of the board.
-    """
-    return [[X, EMPTY, O],
-            [EMPTY, X, EMPTY],
-            [O, EMPTY, X]]
+    # """
+    # return [[X, EMPTY, O],
+    #         [EMPTY, X, EMPTY],
+    #         [O, EMPTY, X]]
 
     # return [[EMPTY, EMPTY, EMPTY],
     #         [EMPTY, EMPTY, EMPTY],
     #         [EMPTY, EMPTY, EMPTY]]
+
+    return [[X, O, O],
+            [O, X, X],
+            [O, X, O]]
 
 
 def player(board):
@@ -42,8 +46,12 @@ def actions(board):
         Possible moves are any cells on the board that do not already have an X or an O in them.
         Any return value is acceptable if a terminal board is provided as input.
     """
-    raise NotImplementedError
-
+    a = set()
+    for i in range(len(board)):
+        for j in range(len(board[i])):
+            if board[i][j] is None:
+                a.add((i,j))
+    return a
 
 def result(board, action):
     """
@@ -86,8 +94,15 @@ def terminal(board):
         If the game is over, either because someone has won the game or because all cells have been filled without anyone winning, the function should return True.
         Otherwise, the function should return False if the game is still in progress.
     """
-    w = winner(board)
-    return ...
+
+    if winner(board) is None:
+        # Is there available moves on board?
+        if len(actions(board)) == 0:
+            return True
+        else:
+            return False
+    else:
+        return True
 
 
 def utility(board):
