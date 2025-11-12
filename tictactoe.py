@@ -14,13 +14,13 @@ def initial_state():
     """
     Returns starting state of the board.
     # """
-    # return [[X, EMPTY, O],
-    #         [EMPTY, X, EMPTY],
-    #         [O, EMPTY, X]]
+    return [[X, EMPTY, O],
+            [EMPTY, X, EMPTY],
+            [O, EMPTY, X]]
 
-    return [[EMPTY, EMPTY, EMPTY],
-            [EMPTY, EMPTY, EMPTY],
-            [EMPTY, EMPTY, EMPTY]]
+    # return [[EMPTY, EMPTY, EMPTY],
+    #         [EMPTY, EMPTY, EMPTY],
+    #         [EMPTY, EMPTY, EMPTY]]
 
     # return [[X, O, O],
     #         [O, X, X],
@@ -131,7 +131,10 @@ def utility(board):
         If X has won the game, the utility is 1. If O has won the game, the utility is -1. If the game has ended in a tie, the utility is 0.
         You may assume utility will only be called on a board if terminal(board) is True.
     """
-    raise NotImplementedError
+    w = winner(board)
+    if w is None:
+        return 0
+    return 1 if w == X else -1
 
 
 def minimax(board):
