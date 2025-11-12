@@ -17,13 +17,13 @@ def initial_state():
     #         [EMPTY, X, EMPTY],
     #         [O, EMPTY, X]]
 
-    # return [[EMPTY, EMPTY, EMPTY],
-    #         [EMPTY, EMPTY, EMPTY],
-    #         [EMPTY, EMPTY, EMPTY]]
+    return [[EMPTY, EMPTY, EMPTY],
+            [EMPTY, EMPTY, EMPTY],
+            [EMPTY, EMPTY, EMPTY]]
 
-    return [[X, O, O],
-            [O, X, X],
-            [O, X, O]]
+    # return [[X, O, O],
+    #         [O, X, X],
+    #         [O, X, O]]
 
 
 def player(board):
@@ -34,7 +34,20 @@ def player(board):
         In the initial game state, X gets the first move. Subsequently, the player alternates with each additional move.
         Any return value is acceptable if a terminal board is provided as input (i.e., the game is already over).
     """
-    raise NotImplementedError
+    x_player_turns = 0
+    o_player_turns = 0
+    # Counts turns of each players
+    for row in board:
+        for cell in row:
+            if cell == X:
+                x_player_turns = x_player_turns + 1
+            if cell == O:
+                o_player_turns = o_player_turns + 1
+
+    if x_player_turns > o_player_turns or x_player_turns == o_player_turns:
+        return X
+    else:
+        return O
 
 
 def actions(board):
